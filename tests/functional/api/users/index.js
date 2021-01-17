@@ -101,4 +101,27 @@ describe("Users endpoint", () => {
         });
     });
   });
+
+  describe("DELETE /users/:userName", () => {
+    it("should return a 201 status and the confirmation message", () => {
+      return request(api)
+        .delete(`/api/users/${users[0].username}`)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect(201)
+        .expect({ code: 201, msg: 'Successful delete a user.' });
+    });
+    /*after(() => {
+      return request(api)
+        .get("/api/users")
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.be.a("array");
+          expect(res.body.length).to.equal(1);
+        });
+    });*/
+  });
+
 });

@@ -87,4 +87,21 @@ router.get('/:userName/favourites', (req, res, next) => {
   ).catch(next);
 });
 
+router.delete('/:userName', async(req, res, next) => {
+  const userName = req.params.userName;
+  const user = await User.findByUserName(userName).catch(next);
+  if(!user){
+    res.status(401).json({
+      success: false,
+      msg: 'Can not find the user.',
+    });
+  }else{
+    await User.deleteByUserName(userName).catch(next);
+    res.status(201).json({
+      code: 201,
+      msg: 'Successful delete a user.',
+    });
+  }
+})
+
 export default router;

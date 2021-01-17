@@ -12,6 +12,10 @@ const Schema = mongoose.Schema;
   UserSchema.statics.findByUserName = function (username) {
     return this.findOne({ username: username });
   };
+
+  UserSchema.statics.deleteByUserName = function (username) {
+    return this.deleteOne({ username: username });
+  };
   
   UserSchema.methods.comparePassword = function(passw, cb) {
     bcrypt.compare(passw, this.password, (err, isMatch) => {
