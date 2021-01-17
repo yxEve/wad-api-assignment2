@@ -7,7 +7,6 @@ import api from "../../../../index";
 const expect = chai.expect;
 
 let db;
-//let api;
 let token;
 
 const users = [
@@ -50,7 +49,6 @@ describe("Users endpoint", () => {
   });
   beforeEach(async () => {
     try {
-      //api = require("../../../../index");
       await User.deleteMany({});
       await User.collection.insertMany(users);
     } catch (err) {
@@ -87,7 +85,7 @@ describe("Users endpoint", () => {
           password: "test3",
         })
         .expect(201)
-        .expect({ code: 201, msg: 'Successfully created new user.' });
+        .expect({ code: 201, msg: 'Successful created new user.' });
     });
     after(() => {
       return request(api)

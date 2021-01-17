@@ -4,7 +4,6 @@ import api from "../../../../index";
 
 const expect = chai.expect;
 
-//let api;
 let token;
 
 const sampleMovie = {
@@ -13,13 +12,6 @@ const sampleMovie = {
 };
 
 describe("Movies endpoint", function (){
-  // beforeEach(() => {
-  //   try {
-  //     api = require("../../../../index");
-  //   } catch (err) {
-  //     console.error(`failed to Load user Data: ${err}`);
-  //   }
-  // });
   this.timeout(6400);
   before((done) => {
     setTimeout(() => {
