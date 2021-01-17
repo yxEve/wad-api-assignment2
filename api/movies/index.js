@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-   getMovieReviews, getUpcomingMovies
+   getMovieReviews, getUpcomingMovies, getPopularMovies, getNowPlayingMovies
 } from '../tmdb-api';
 import movieModel from './movieModel.js';
 
@@ -33,6 +33,20 @@ router.get('/upcoming/:page', (req, res, next) => {
 router.get('/upcoming/:region', (req, res, next) => {
   const region = parseString(req.params.region);
   getUpcomingMovies(region)
+  .then(movies => res.status(200).send(movies))
+  .catch((error) => next(error));
+});
+
+router.get('/popular/:page', (req, res, next) => {
+  const page = parseInt(req.params.page);
+  getPopularMovies(page)
+  .then(movies => res.status(200).send(movies))
+  .catch((error) => next(error));
+});
+
+router.get('/now_playing/:page', (req, res, next) => {
+  const page = parseInt(req.params.page);
+  getNowPlayingMovies(page)
   .then(movies => res.status(200).send(movies))
   .catch((error) => next(error));
 });
