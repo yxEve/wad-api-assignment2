@@ -8,6 +8,7 @@ import moviesRouter from './api/movies';
 import genresRouter from './api/genres';
 import bodyParser from 'body-parser';
 import usersRouter from './api/users';
+import personRouter from './api/person';
 import loglevel from 'loglevel';
 
 dotenv.config();
@@ -48,6 +49,7 @@ app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRou
 app.use('/api/genres', genresRouter);
 //Users router
 app.use('/api/users', usersRouter);
+app.use('/api/person', personRouter);
 app.use(errHandler);
 
 
