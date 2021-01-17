@@ -81,6 +81,57 @@ describe("Person endpoint", function (){
     });
   });
 
-  
+  describe("POST / ", () => {
+    it("should return a 200 status and the confirmation message", () => {
+      return request(api)
+        .post("/api/person")
+        .send({
+          id: "20091635",
+          name: "yuxin",
+        })
+        .expect(201)
+        .expect({ code: 201, msg: 'Successful created new person.' });
+    });
+    after(() => {
+      return request(api)
+        .get("/api/person")
+        .set("Accept", "application/json")
+        .expect("Content-Type", /json/)
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.be.a("array");
+          expect(res.body.length).to.equal(21);
+        });
+    });
+  });
+  describe("DELETE /person/:id", () => {
+    beforeEach(() => {
+      return request(api)
+        .get(`/api/movies/${samplePerson.id}`)
+        .set("Accept", "application/json")
+        .set('Authorization',token)
+        .expect(200)
+    })
+    it("should return a 201 status and the confirmation message", () => {
+      return request(api)
+        .delete(`/api/movies/${samplePerson.id}`)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect(201)
+        .expect({ code: 201, msg: 'Successful delete a person.' });
+    });
+    after(() => {
+      return request(api)
+        .get("/api/person")
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.be.a("array");
+          expect(res.body.length).to.equal(19);
+        });
+    });
+  });
+
 
 });
