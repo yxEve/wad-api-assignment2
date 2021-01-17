@@ -29,3 +29,75 @@ export const getMovies = () => {
       .then(res => res.json())
       .then(json => json.results);
   };
+
+  export const getUpcomingMovies = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_KEY}&language=en-US&page=1&region=US`
+    )
+      .then(res => res.json())
+      .then(json => json.results)
+}
+
+  export const getPopularMovies = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=2`
+    )
+      .then(res => res.json())
+      .then(json => json.results)
+}
+
+  export const getNowPlayingMovies = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
+  )
+      .then(res => res.json())
+      .then(json => json.results)
+}
+  
+  export const getCast = (id) => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_KEY}&language=en-US`
+)
+      .then(res => res.json())
+      .then(json => json.cast)
+}
+
+  export const getCrew = (id) => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_KEY}&language=en-US`
+)
+      .then(res => res.json())
+      .then(json => json.crew)
+}
+
+  export const getSimilarMovies = id => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.TMDB_KEY}`
+)
+      .then(res => res.json())
+      .then(json => json.results)
+}
+
+  export const getVideos = id => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.TMDB_KEY}`
+)
+      .then(res => res.json())
+      .then(json => json.results)
+}
+
+  export const getImages = id => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/images?api_key=${process.env.TMDB_KEY}`
+)
+      .then(res => res.json())
+      .then(json => json.backdrops)
+}
+
+export const getRecommendations = id => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
+)
+    .then(res => res.json())
+    .then(json => json.results)
+}
