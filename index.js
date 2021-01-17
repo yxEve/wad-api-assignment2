@@ -1,6 +1,6 @@
 import session from 'express-session';
 import passport from './authenticate';
-import {loadUsers, loadMovies} from './seedData';
+import {loadUsers, loadMovies, loadPerson} from './seedData';
 import './db';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -16,6 +16,7 @@ dotenv.config();
 if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
+  loadPerson();
 }
 
 const errHandler = (err, req, res, next) => {

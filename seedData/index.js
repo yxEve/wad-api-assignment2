@@ -1,6 +1,8 @@
 import userModel from '../api/users/userModel';
 import movieModel from '../api/movies/movieModel';
+import personModel from '../api/person/personModel';
 import {movies} from './movies.js';
+import {person} from './person.js';
 
 const users = [
   {
@@ -35,5 +37,17 @@ export async function loadMovies() {
     console.info(`${movies.length} Movies were successfully stored.`);
   } catch (err) {
     console.error(`failed to Load movie Data: ${err}`);
+  }
+}
+
+export async function loadPerson() {
+  console.log('load seed data');
+  console.log(person.length);
+  try {
+    await personModel.deleteMany();
+    await personModel.collection.insertMany(person);
+    console.info(`${person.length} person were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load person Data: ${err}`);
   }
 }
