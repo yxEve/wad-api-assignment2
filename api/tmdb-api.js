@@ -30,25 +30,25 @@ export const getMovies = () => {
       .then(json => json.results);
   };
 
-  export const getUpcomingMovies = () => {
+  export const getUpcomingMovies = (region) => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_KEY}&language=en-US&page=1&region=US`
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_KEY}&language=en-US&region=${region}`
     )
       .then(res => res.json())
       .then(json => json.results)
 }
 
-  export const getPopularMovies = () => {
+  export const getPopularMovies = (page) => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=2`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=${page}`
     )
       .then(res => res.json())
       .then(json => json.results)
 }
 
-  export const getNowPlayingMovies = () => {
+  export const getNowPlayingMovies = (page) => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.TMDB_KEY}&language=en-US&page=${page}`
   )
       .then(res => res.json())
       .then(json => json.results)

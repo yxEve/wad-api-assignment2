@@ -24,15 +24,8 @@ router.get('/:id/reviews', (req, res, next) => {
   .catch((error) => next(error));
 });
 
-router.get('/upcoming/:page', (req, res, next) => {
-  const page = parseInt(req.params.page);
-  getUpcomingMovies(page)
-  .then(movies => res.status(200).send(movies))
-  .catch((error) => next(error));
-});
-
 router.get('/upcoming/:region', (req, res, next) => {
-  const region = parseString(req.params.region);
+  const region = req.params.region;
   getUpcomingMovies(region)
   .then(movies => res.status(200).send(movies))
   .catch((error) => next(error));
@@ -93,6 +86,38 @@ router.get('/:id/video', (req, res, next) => {
   .then(video => res.status(200).send(video))
   .catch((error) => next(error));
 });
+
+router.post('/', async(req, res, next) => {
+  if(!req.body.id || !req.body.title){
+    res.status(401).json({
+      success: false,
+      msg: 'Please input the information of the movie.',
+    });
+  }else{
+    movieModel.deleteByMovieDBId(id).then(
+      res.status(200).json({
+        code : 200,
+        msg: 'Successful created new movie.',
+      }));
+    }
+})
+
+router.delete('/:id', async(req, res, next) => {
+  const id = parseInt(req.params.id);
+  const movie = await movieModel.findByMovieDBId(id);
+  if(!movie){
+    res.status(401).json({
+      success: false,
+      msg: 'Can not find the movie.',
+    });
+  }else{
+    await movieModel.deleteByMovieDBId(id).catch(next);
+    res.status(201).json({
+      code: 201,
+      msg: 'Successful delete a movie.',
+    });
+  }
+})
 
 
 export default router;
