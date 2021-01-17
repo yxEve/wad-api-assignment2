@@ -207,42 +207,21 @@ describe("Movies endpoint", function (){
     });
   });
 
-  describe("POST /movies", () => {
-    it("should return a 200 status and the confirmation message", () => {
-      return request(api)
-        .post("/api/movies")
-        .set("Accept", "application/json")
-        .expect("Authorization", token)
-        .send({
-          id: "10000000",
-          title: "AI",
-        })
-        .expect(201)
-        .expect({ code: 201, msg: 'Successful created new movie.' });
-    });
-    after(() => {
-      return request(api)
-        .get("/api/movies")
-        .set("Accept", "application/json")
-        .expect("Authorization", token)
-        .expect(200)
-        .then((res) => {
-          expect(res.body).to.be.a("array");
-          expect(result).to.have.property("id","100000000");
-          expect(result).to.have.property("title","AI");
-        });
-    });
-  });
-
   describe("DELETE /movies/:id", () => {
-    it("should return a 200 status and the confirmation message", () => {
+    beforeEach(() => {
       return request(api)
         .get(`/api/movies/${sampleMovie.id}`)
         .set("Accept", "application/json")
-        .set("Authorization", token)
-        .delete(`/api/movies/${sampleMovie.id}`)
+        .set('Authorization',token)
         .expect(200)
-        .expect({ code: 200, msg: 'Successful delete a movie.' });
+    })
+    it("should return a 201 status and the confirmation message", () => {
+      return request(api)
+        .delete(`/api/movies/${sampleMovie.id}`)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect(201)
+        .expect({ code: 201, msg: 'Successful delete a movie.' });
     });
     after(() => {
       return request(api)
