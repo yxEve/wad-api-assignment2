@@ -105,16 +105,9 @@ describe("Person endpoint", function (){
     });
   });
   describe("DELETE /person/:id", () => {
-    beforeEach(() => {
-      return request(api)
-        .get(`/api/movies/${samplePerson.id}`)
-        .set("Accept", "application/json")
-        .set('Authorization',token)
-        .expect(200)
-    })
     it("should return a 201 status and the confirmation message", () => {
       return request(api)
-        .delete(`/api/movies/${samplePerson.id}`)
+        .delete(`/api/person/${samplePerson.id}`)
         .set("Accept", "application/json")
         .set("Authorization", token)
         .expect(201)
@@ -128,7 +121,7 @@ describe("Person endpoint", function (){
         .expect(200)
         .then((res) => {
           expect(res.body).to.be.a("array");
-          expect(res.body.length).to.equal(19);
+          expect(res.body.length).to.equal(20);
         });
     });
   });
