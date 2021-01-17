@@ -1,7 +1,7 @@
 import express from 'express';
 import {
    getMovieReviews, getUpcomingMovies, getPopularMovies, getNowPlayingMovies,
-   getSimilarMovies, getRecommendations, getCast, getCrew
+   getSimilarMovies, getRecommendations, getCast, getCrew, getImages, getVideos
 } from '../tmdb-api';
 import movieModel from './movieModel.js';
 
@@ -77,6 +77,20 @@ router.get('/:id/crew', (req, res, next) => {
   const id = parseInt(req.params.id);
   getCrew(id)
   .then(crew => res.status(200).send(crew))
+  .catch((error) => next(error));
+});
+
+router.get('/:id/image', (req, res, next) => {
+  const id = parseInt(req.params.id);
+  getImages(id)
+  .then(image => res.status(200).send(image))
+  .catch((error) => next(error));
+});
+
+router.get('/:id/video', (req, res, next) => {
+  const id = parseInt(req.params.id);
+  getVideos(id)
+  .then(video => res.status(200).send(video))
   .catch((error) => next(error));
 });
 
