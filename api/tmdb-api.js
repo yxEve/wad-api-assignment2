@@ -102,10 +102,17 @@ export const getRecommendations = id => {
     .then(json => json.results)
 }
 
-export const getPopularPerson = id => {
+export const getPopularPerson = () => {
   return fetch(
     `https://api.themoviedb.org/3/person/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
 )
     .then(res => res.json())
     .then(json => json.results)
+}
+
+export const getPersonDetails = id => {
+  return fetch(
+    `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
+)
+    .then(res => res.json())
 }
