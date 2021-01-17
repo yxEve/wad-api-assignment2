@@ -111,7 +111,7 @@ describe("Users endpoint", () => {
         .expect(201)
         .expect({ code: 201, msg: 'Successful delete a user.' });
     });
-    /*after(() => {
+    after(() => {
       return request(api)
         .get("/api/users")
         .set("Accept", "application/json")
@@ -121,7 +121,7 @@ describe("Users endpoint", () => {
           expect(res.body).to.be.a("array");
           expect(res.body.length).to.equal(1);
         });
-    });*/
+    });
   });
 
 });

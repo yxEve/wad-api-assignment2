@@ -207,6 +207,32 @@ describe("Movies endpoint", function (){
     });
   });
 
+  describe("POST / ", () => {
+    it("should return a 200 status and the confirmation message", () => {
+      return request(api)
+        .post("/api/movies")
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .send({
+          id: "20091635",
+          title: "aaaaa",
+        })
+        .expect(201)
+        .expect({ code: 201, msg: 'Successful created new movie.' });
+    });
+    after(() => {
+      return request(api)
+        .get("/api/movies")
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.be.a("array");
+          expect(res.body.length).to.equal(21);
+        });
+    });
+  });
+
   describe("DELETE /movies/:id", () => {
     beforeEach(() => {
       return request(api)
@@ -231,7 +257,7 @@ describe("Movies endpoint", function (){
         .expect(200)
         .then((res) => {
           expect(res.body).to.be.a("array");
-          expect(res.body.length).to.equal(19);
+          expect(res.body.length).to.equal(20);
         });
     });
   });

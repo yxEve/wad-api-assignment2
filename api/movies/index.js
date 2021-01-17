@@ -94,11 +94,11 @@ router.post('/', async(req, res, next) => {
       msg: 'Please input the information of the movie.',
     });
   }else{
-    movieModel.deleteByMovieDBId(id).then(
-      res.status(200).json({
-        code : 200,
-        msg: 'Successful created new movie.',
-      }));
+    await movieModel.create(req.body).catch(next);
+    res.status(201).json({
+      code: 201,
+      msg: 'Successful created new movie.',
+    });
     }
 })
 
