@@ -1,0 +1,1088 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "version": "1.0.0",
+    "title": "Swagger Petstore",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "petstore.swagger.io",
+  "basePath": "/v2",
+  "tags": [
+    {
+      "name": "Movies",
+      "description": "Everything about the movies",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Users",
+      "description": "Everything about the users",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "People",
+      "description": "Everything about the people",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Genres",
+      "description": "Everything about the genres",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api/movies": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Returns a list of movies ",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUsersWithArrayInput",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/movies/{id}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Returns the detailed infoormation of a specific movie",
+        "description": "",
+        "operationId": "createUsersWithArrayInput",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/movies/{id}/reviews": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Returns movie reviews of a specific movie",
+        "description": "",
+        "operationId": "createUsersWithListInput",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/upcoming/{region}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Returns upcoming movies according to region",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            },
+            "headers": {
+              "X-Rate-Limit": {
+                "type": "integer",
+                "format": "int32",
+                "description": "calls per hour allowed by the user"
+              },
+              "X-Expires-After": {
+                "type": "string",
+                "format": "date-time",
+                "description": "date in UTC when token expires"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/api/movies/popular/{page}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Returns popular movies according to page",
+        "description": "",
+        "operationId": "logoutUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/now-playing/{page}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Returns now_playing movies according to page",
+        "description": "",
+        "operationId": "getUserByName",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+      "/api/movies/{id}/similar":{
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Returns a list of similar movies of a specific movie",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+  },
+     "/api/movies/{id}/recommendations":{
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Returns a list of recommendations of a specific movie",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+
+  "/api/movies/{id}/cast":{
+    "get": {
+      "tags": [
+        "Movies"
+      ],
+      "summary": "Returns the cast information on a specific movie",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/movies/{id}/crew":{
+    "get": {
+      "tags": [
+        "Movies"
+      ],
+      "summary": "Returns the crew information on a specific movie",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/movies/{id}/image":{
+    "get": {
+      "tags": [
+        "Movies"
+      ],
+      "summary": "Returns the backdrops information on a specific movie",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/movies/{id}/video":{
+    "get": {
+      "tags": [
+        "Movies"
+      ],
+      "summary": "Returns the video information on a specific movie",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/movie":{
+    "post": {
+      "tags": [
+        "Movies"
+      ],
+      "summary": "Creates a new movie",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/movies/${id}":{
+    "delete": {
+      "tags": [
+        "Movies"
+      ],
+      "summary": "Deletes a specific movie by id",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/users":{
+    "get": {
+      "tags": [
+        "Users"
+      ],
+      "summary": "Returns a list of users",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/users/":{
+    "post": {
+      "tags": [
+        "Users"
+      ],
+      "summary": "Registers a new user",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/users/{id}":{
+    "put": {
+      "tags": [
+        "Users"
+      ],
+      "summary": "Updates a user",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/users/{userName}/favourites":{
+    "post": {
+      "tags": [
+        "Users"
+      ],
+      "summary": "Add movies to favourites",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/users/${userName}/favourites":{
+    "get": {
+      "tags": [
+        "Users"
+      ],
+      "summary": "Returns a list of favourite movies",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/{userName}":{
+    "delete": {
+      "tags": [
+        "Users"
+      ],
+      "summary": "Deletes users by username",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/person":{
+    "get": {
+      "tags": [
+        "People"
+      ],
+      "summary": "Returns a list of popular people",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/person/{id}":{
+    "get": {
+      "tags": [
+        "People"
+      ],
+      "summary": "Returns detailed information of a person",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/person/":{
+    "post": {
+      "tags": [
+        "People"
+      ],
+      "summary": "Creates a new person",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/person/{id}/":{
+    "put": {
+      "tags": [
+        "People"
+      ],
+      "summary": "Updates information of a person",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/person/${id}":{
+    "delete": {
+      "tags": [
+        "People"
+      ],
+      "summary": "Deletes a person by id",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  },
+  "/api/genres":{
+    "get": {
+      "tags": [
+        "Genres"
+      ],
+      "summary": "Returns a list genres",
+      "description": "This can only be done by the logged in user.",
+      "operationId": "deleteUser",
+      "produces": [
+        "application/xml",
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "description": "The name that needs to be deleted",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid username supplied"
+        },
+        "404": {
+          "description": "User not found"
+        }
+      }
+    }
+  }
+  
+  },
+
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Order": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "petId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shipDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "Order Status",
+          "enum": [
+            "placed",
+            "approved",
+            "delivered"
+          ]
+        },
+        "complete": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "xml": {
+        "name": "Order"
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Category"
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "User Status"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Tag"
+      }
+    },
+    "Pet": {
+      "type": "object",
+      "required": [
+        "name",
+        "photoUrls"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "name": {
+          "type": "string",
+          "example": "doggie"
+        },
+        "photoUrls": {
+          "type": "array",
+          "xml": {
+            "name": "photoUrl",
+            "wrapped": true
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "xml": {
+            "name": "tag",
+            "wrapped": true
+          },
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "pet status in the store",
+          "enum": [
+            "available",
+            "pending",
+            "sold"
+          ]
+        }
+      },
+      "xml": {
+        "name": "Pet"
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
